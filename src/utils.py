@@ -7,6 +7,11 @@ load_dotenv()
 
 openai_apikey = os.getenv("OPENAI_API_KEY")
 tavily_key = os.getenv("TAVILY_API_KEY")
+# Simple check to prevent silent errors
+if not tavily_key:
+    raise ValueError("TAVILY_API_KEY not found! Make sure it's set in your environment.")
+from dotenv import load_dotenv
+import os
 
 # Tavily Search Tool
 def scrape_news():
