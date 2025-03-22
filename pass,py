@@ -1,0 +1,16 @@
+from langchain_community.tools.tavily_search import TavilySearchResults
+
+def scrape_news():
+    tool = TavilySearchResults(
+        api_key=tavily_key,  # Never hardcode the key, always use env
+        max_results=10,
+        search_depth="advanced",
+        include_answer=True,
+        include_raw_content=True,
+        include_domains=["insurancejournal.com", "reinsurancene.ws"]
+    )
+
+    query = "Climate risk insurance 2024"
+    response = tool.invoke({"query": query})
+
+    return response
