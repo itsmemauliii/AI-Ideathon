@@ -64,14 +64,16 @@ def find_research_references(structured_response):
 
 
 # Streamlit Dashboard UI
-def run_dashboard(data):
+def run_dashboard(enriched_news):
+    import streamlit as st
+
     st.title("Climate Risk & Insurance Insights Dashboard")
 
     st.sidebar.header("Filter by Tag")
-    tags = sorted(set(tag for item in data for tag in item["news"]["tags"]))
+    tags = sorted(set(tag for item in enriched_news for tag in item["news"]["tags"]))
     selected_tag = st.sidebar.selectbox("Select Tag", tags)
 
-    for item in data:
+    for item in enriched_news:
         if selected_tag in item["news"]["tags"]:
             news = item["news"]
             st.subheader(news["title"])
@@ -80,6 +82,10 @@ def run_dashboard(data):
 
             st.markdown("### Research References")
             for ref in item["research_refs"]:
-                st.write(f"- {ref['title']} ({ref['source']['name']})")
+                # Safe access to source and title
+                title = ref.get('title', 'No Title')
+                source_name = ref.get('source', {}).get('name', 'Unknown Source')
+
+                st.write(f"- {title} ({source_name})")
 
             st.markdown("---")
