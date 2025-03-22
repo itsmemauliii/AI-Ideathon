@@ -6,15 +6,13 @@ import streamlit as st
 openai_key = st.secrets["OPENAI_API_KEY"]
 tavily_key = st.secrets["TAVILY_API_KEY"]
 
-load_dotenv()
+import toml
 
-openai_apikey = os.getenv("OPENAI_API_KEY")
-tavily_key = os.getenv("TAVILY_API_KEY")
-# Simple check to prevent silent errors
-if not tavily_key:
-    raise ValueError("TAVILY_API_KEY not found! Make sure it's set in your environment.")
-from dotenv import load_dotenv
-import os
+# Load secrets from TOML file
+secrets = toml.load("secrets.toml")
+
+openai_key = secrets["OPENAI_API_KEY"]
+tavily_key = secrets["TAVILY_API_KEY"]
 
 # Tavily Search Tool
 def scrape_news():
