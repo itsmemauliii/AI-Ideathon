@@ -1,0 +1,13 @@
+📦 Project_Submission
+├── 📁 src
+│   ├── main.py
+│   ├── utils.py
+├── 📁 docs
+│   ├── documentation.md
+│   ├── ethical_guidelines.md
+├── 📁 reports
+│   ├── outputs_report.pdf
+│   ├── KPI_metrics_report.pdf
+├── README.md
+├── requirements.txt
+└── .env (Optional, but listed in README)
