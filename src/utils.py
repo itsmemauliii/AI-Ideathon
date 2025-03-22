@@ -29,14 +29,17 @@ def scrape_news():
 # Structure News Response
 def structure_the_response(response):
     structured = []
-    for article in response.get("results", []):
+
+    # If response is already a list, just loop through it.
+    for article in response:  
         structured.append({
-            "title": article["title"],
-            "source": article["source"]["name"],
-            "date": article["published_at"],
-            "summary": article["snippet"],
-            "tags": ["climate risk", "insurance"]
+            "title": article.get("title", "No Title"),
+            "source": article.get("source", {}).get("name", "Unknown Source"),
+            "date": article.get("published_at", "Unknown Date"),
+            "summary": article.get("snippet", "No Summary"),
+            "tags": ["climate risk", "insurance"]  # You can customize tags or auto-detect with NLP later
         })
+
     return structured
 
 # Search for Research References
