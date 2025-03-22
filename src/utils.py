@@ -47,13 +47,21 @@ def find_research_references(structured_response):
     enriched = []
     for item in structured_response:
         query = item["title"] + " site:arxiv.org"
-        tool = TavilySearchResults(max_results=5)
+        tool = TavilySearchResults(api_key=tavily_key, max_results=5)
+        
         research_results = tool.invoke({"query": query})
+
+        # Optional Debug
+        print(f"Query: {query}")
+        print(f"Research Results: {research_results}")
+
         enriched.append({
             "news": item,
-            "research_refs": research_results.get("results", [])
+            "research_refs": research_results
         })
+
     return enriched
+
 
 # Streamlit Dashboard UI
 def run_dashboard(data):
