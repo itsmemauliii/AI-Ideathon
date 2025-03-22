@@ -9,7 +9,7 @@ tavily_key = st.secrets["TAVILY_API_KEY"]
 import toml
 
 # Load secrets from TOML file
-secrets = toml.load("secrets.toml")
+secrets = toml.load("src/secrets.toml")
 
 openai_key = secrets["OPENAI_API_KEY"]
 tavily_key = secrets["TAVILY_API_KEY"]
