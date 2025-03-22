@@ -3,6 +3,9 @@ from dotenv import load_dotenv
 from langchain_community.tools.tavily_search import TavilySearchResults
 import streamlit as st
 
+openai_key = st.secrets["OPENAI_API_KEY"]
+tavily_key = st.secrets["TAVILY_API_KEY"]
+
 load_dotenv()
 
 openai_apikey = os.getenv("OPENAI_API_KEY")
