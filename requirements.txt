@@ -1,0 +1,7 @@
+langchain-openai
+langchain-community>=0.2.11
+langchain-core
+python-dotenv
+langgraph
+tavily-python
+streamlit
